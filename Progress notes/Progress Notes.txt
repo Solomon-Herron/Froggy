@@ -7,7 +7,7 @@ Each of these notes need to go in commit note
 --Described the responsibilities and capabilities of a User and Admin(not on paper yet, admins simply have CRUD capabilities for users)
 --Scribbled program UI flowchart
 --Scribbled some really fugly psuedocode as to how past bug descriptions will be created
---
+-
 
 Misc Notes:
 
