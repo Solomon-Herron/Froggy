@@ -10,9 +10,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Welcome</title>
   </head>
   <body>
-  $END$
+  <div class="container">
+    <div class="login-form">
+      <h1 class="login">Login</h1>
+      <form action="UserLoginServlet" method="get">
+        <label>Username:</label><input type="text" value="Enter Username" name="userName">
+        <label>Password:</label><input type="password" value="Enter password" name="password">
+        <input type="submit" value="Login">
+      </form>
+    </div>
+    <div class="new-account">
+      <input type="button" onclick="location.href='${pageContext.request.contextPath}/users/new-user.jsp';"  value="Create Account">
+    </div>
+  </div>
   </body>
 </html>
