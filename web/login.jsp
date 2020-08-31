@@ -13,18 +13,22 @@
     <title>Welcome</title>
   </head>
   <body>
+
   <div class="container">
     <div class="login-form">
       <h1 class="login">Login</h1>
-      <form action="UserLoginServlet" method="get">
+      <form action="UserControllerServlet" method="get">
         <label>Username:</label><input type="text" value="Enter Username" name="userName">
         <label>Password:</label><input type="password" value="Enter password" name="password">
+        <input type="hidden" name="command" value="LOGIN"/>
         <input type="submit" value="Login">
       </form>
     </div>
     <div class="new-account">
-      <input type="button" onclick="location.href='${pageContext.request.contextPath}/users/new-user.jsp';"  value="Create Account">
+      <input type="button" onclick="location.href='${pageContext.request.contextPath}/new-user.jsp';"  value="Create Account">
     </div>
   </div>
+
+
   </body>
 </html>

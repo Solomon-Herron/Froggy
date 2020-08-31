@@ -1,4 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `froggy_bug_tracker`;
 USE `froggy_bug_tracker`;
 
 
@@ -12,7 +11,7 @@ CREATE TABLE `bug` (
   `bug_description` varchar(300) DEFAULT NULL,
   `report_date` varchar(45) DEFAULT NULL,
   `change_history` varchar(3000) DEFAULT NULL,
-  `resolution` varchar(300) DEFAULT NULL
+  `resolution` varchar(300) DEFAULT NULL,
   PRIMARY KEY (`reference_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -23,7 +22,7 @@ CREATE TABLE `bug` (
 
 LOCK TABLES `bug` WRITE;
 /*!40000 ALTER TABLE `bug` DISABLE KEYS */;
-INSERT INTO `bug` VALUES (1, 5000,'Attempting to close tab in browser','tab will not close'),(2, 5001,'Attempting to close tab in browser','tab will not close'),(4,5002,'Attempting to close tab in browser','tab will not close'),(5,5004,'Attempting to close tab in browser','tab will not close');
+INSERT INTO `bug` VALUES (1, 5000,'Attempting to close tab in browser','tab will not close', 'null', 'null', 'null'),(2, 5001,'Attempting to close tab in browser','tab will not close', 'null', 'null', 'null'),(4,5002,'Attempting to close tab in browser','tab will not close', 'null', 'null', 'null'),(5,5004,'Attempting to close tab in browser','tab will not close', 'null', 'null', 'null');
 /*!40000 ALTER TABLE `bug` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

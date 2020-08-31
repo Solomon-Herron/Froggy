@@ -22,11 +22,17 @@ public class User {
         this.password = password;
     }
 
+    public User(int devID, String userName, String password) {
+        this.devID = devID;
+        this.userName = userName;
+        this.password = password;
+    }
+
     public int getDevID() {
         return devID;
     }
 
-    public void setId(int devID) {
+    public void setDevId(Integer devID) {
         this.devID = devID;
     }
 

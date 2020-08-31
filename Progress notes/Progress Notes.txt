@@ -6,8 +6,30 @@ Each of these notes need to go in commit note
 --***On paper: notes8_29.jpg **
 --Described the responsibilities and capabilities of a User and Admin(not on paper yet, admins simply have CRUD capabilities for users)
 --Scribbled program UI flowchart
---Scribbled some really fugly psuedocode as to how past bug descriptions will be created
----
+--Scribbled some really fugly psuedocode as to how past bug descriptions will be appended to change history
+
+
+08/30/2020:
+--finished backend objects, began constructing jsp pages. **Currently facing an error: 'java.lang.IllegalStateException: Cannot forward after response has been committed' when trying to submit new user data from
+ client (new-user.jsp) to server (UserControllerServlet.java). Once this is resolved, continue new user workflow so that you can get app running, because as it stands, premade users cannot be used to login.
+ Their passwords were never/are not hashed, so they fail BCrypt password verification.
+
+ The issue with the illegalstateexception may lie in the fact that data has already been appended to request before sending it to userDAO.listUsers(). More research needed. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Misc Notes:
 

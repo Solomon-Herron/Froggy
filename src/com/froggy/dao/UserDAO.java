@@ -1,13 +1,11 @@
 package com.froggy.dao;
 
+import com.froggy.BCrypt;
 import com.froggy.User;
 
 import javax.sql.DataSource;
 import javax.xml.transform.Result;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +18,40 @@ public class UserDAO extends MySQLAccessor {
         super(dataSource);
         this.dataSource = dataSource;
     }
+
+    public User checkLogin(String userName, String password) throws SQLException, ClassNotFoundException {
+        Connection conn = null;
+        Statement stmnt = null;
+        ResultSet rs = null;
+        User user = null;
+
+        try {
+            conn = dataSource.getConnection();
+            String sql = "SELECT * FROM credentials WHERE user_name ='" + userName +"'";
+            stmnt = conn.createStatement();
+            rs = stmnt.executeQuery(sql);
+            if (rs.next()) {
+                int devID = rs.getInt("dev_id");
+                String username = rs.getString("user_name");
+                String passworD = rs.getString("password");
+                user = new User(devID, username, passworD);
+            }
+            // Check that an unencrypted password matches one that has
+            // previously been hashed
+            if (BCrypt.checkpw(password, user.getPassword())) {
+                return user;
+            } else {
+                user.setDevId(null);
+                user.setUserName(null);
+                user.setPassword(null);
+                return user;
+            }
+        } finally {
+            close(conn, stmnt, rs);
+        }
+    }
+
+
 
     public List<User> getUsers() throws Exception{
         List<User> users = new ArrayList<>();
@@ -63,10 +95,12 @@ public class UserDAO extends MySQLAccessor {
             //Create Connection
             conn = dataSource.getConnection();
             //create SQL statement
-            String sql  = "INSERT INTO user (first_name, last_name, email) VALUES ('" + newUser.getFirstName() + "','" + newUser.getLastName() + "','" + newUser.getEmail() + "');"; //sql statement
+            String UserSql  = "INSERT INTO user (first_name, last_name, email) VALUES ('" + newUser.getFirstName() + "','" + newUser.getLastName() + "','" + newUser.getEmail() + "');"; //sql statement
+            String CredentialsSql = "INSERT INTO credentials (user_name, password) VALUES ('" + newUser.getUserName() + "', '" + newUser.getPassword() + "');";
             stmnt = conn.createStatement(); //statement object created for connection
             //execute query
-            stmnt.executeUpdate(sql);
+            stmnt.executeUpdate(UserSql);
+            stmnt.executeUpdate(CredentialsSql);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
