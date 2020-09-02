@@ -38,6 +38,7 @@ public class UserDAO extends MySQLAccessor {
             }
             // Check that an unencrypted password matches one that has
             // previously been hashed
+            assert user != null;
             if (BCrypt.checkpw(password, user.getPassword())) {
                 return user;
             } else {

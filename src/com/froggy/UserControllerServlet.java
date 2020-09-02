@@ -65,8 +65,6 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                 default:
                     listUsers(request, response);
             }
-            //List the students in MVC fashion.
-            listUsers(request, response);
         } catch (Exception e) {
             throw new ServletException(e);
         }
@@ -133,7 +131,16 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             //add the user to the DB
             userDAO.addUser(newUser);
             //send back to main page
-            listUsers(request, response);
+            BugDAO bugDAO;
+            try{
+                bugDAO = new BugDAO(dataSource);
+            } catch (Exception e) {
+                throw new ServletException(e);
+            }
+            List<Bug> bugs = bugDAO.getBugs();
+            request.setAttribute("BUG_LIST", bugs);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
+            dispatcher.forward(request, response);;
 
         }
 

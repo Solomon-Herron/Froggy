@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import javax.swing.plaf.nimbus.State;
 import javax.xml.transform.Result;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BugDAO extends MySQLAccessor{
@@ -19,7 +20,7 @@ public class BugDAO extends MySQLAccessor{
 
 
     public List<Bug> getBugs() throws Exception{
-        List<Bug> bugs = null;
+        List<Bug> bugs = new ArrayList<>();
         Connection conn = null;
         Statement stmnt = null;
         ResultSet rs = null;
@@ -37,13 +38,12 @@ public class BugDAO extends MySQLAccessor{
                 String changeHistory = rs.getString("change_history");
                 String resolution = rs.getString("resolution");
                 Bug tempbug = new Bug(referenceID, devID, eventDescription, bugDescription, reportDate, changeHistory, resolution);
-                assert bugs != null;
                 bugs.add(tempbug);
             }
         }finally {
             close(conn, stmnt, rs);
         }
-        return bugs;
+        return bugs;//bugs alwats null, thats why list-bugs.jsp blank table
     }
 
     public void addBug(Bug newBug) throws Exception{
