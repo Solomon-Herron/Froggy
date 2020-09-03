@@ -31,7 +31,13 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
         }
 
     }
-
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            userLogin(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         try {
@@ -44,9 +50,6 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             }
             //route to the appropriate method
             switch (command) { //you can use the switch conditional to redirect to different servlets that route traffic to different models.
-                case "LOGIN":
-                    userLogin(request, response);
-                    break;
                 case "LIST":
                     listUsers(request, response);
                     break;
@@ -63,7 +66,7 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                     deleteUser(request, response);
                     break;
                 default:
-                    listUsers(request, response);
+                    userLogin(request, response);
             }
         } catch (Exception e) {
             throw new ServletException(e);

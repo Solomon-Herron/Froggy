@@ -16,7 +16,11 @@ Each of these notes need to go in commit note
 
  The issue with the illegalstateexception may lie in the fact that data has already been appended to request before sending it to userDAO.listUsers(). More research needed..
 
+08/31/2020:
+--Null pointer exception resolved
 
+09/2/2020: 
+building jsp pages
 
 
 
@@ -51,3 +55,51 @@ Misc Notes:
        You add a log statement before and after a section of code that you think is not behaving properly. The first log should print the inputs, the second should print the status
        of the outputs. Run it and see if the result is what you expect. If not, move the output log line closer to the input and test again. Eventually you'll find which lines are
 
+ --------------------------------------------------------
+I do tech screenings for my company, and one of the strategies we sometimes use is to review code a candidate has done. We don't always use this technique, but here's the basic
+approach we use to grade it. Now it's important for me to mention that the code reviews are always coupled with an in-person interview in which we have you talk about the code, 
+and we will generally ask questions to make sure you didn't just copy/paste code and have at least some fundamental understanding of what we see. Also, we don't grade you down 
+for things we don't see - if we see you doing something good, we'll note it and we'll likely ask you about it, but not seeing something doesn't indicate to us that you can't do 
+t... we'll likely ask you 'how would you add <something> to this project?' to test your knowledge of any missing pieces.
+
+All of that being said, here's what we look for, in order (kinda sorta) of increasing skill.
+
+1.) Does it work? If you give us code that doesn't work, you'd better at least be able to explain why. An acceptable answer IS something like "i was just working on this, its not 
+finished, but it demonstrates <x,y, and z>". An acceptable answer IS NOT "i don't know, I worked forever trying to figure it out, etc."
+
+2.) Is there unit testing? For a junior developer, we would really like there to be unit testing. Our junior devs do a lot of "requirements in, code out" type of work, 
+especially when they first start, and that will include a lot of writing unit tests. So showing that you take the time to unit test your personal work is a huge bonus in our 
+eyes (and will differentiate you... so many personal / portfolio projects don't have unit testing). As a candidate's skill goes up, we'll start looking for things like testing 
+edge cases, validating that unit tests only test the method that they are assigned, mocking, and some other stuff.
+
+3.) Special point for web stuff - we'll focus a lot on how bits of code are split between client side and server side, and especially if you're a junior dev, you're guaranteed 
+a question on that.
+
+4.) How is the class design? Now we start getting into the senior dev area. Are classes loosely coupled? cohesive? How much stuff is reusable? Does everything have a defined 
+purpose?
+
+5.) Design patterns - which ones are used? If you use any, you can bank on getting asked why you thought that pattern fit that situation. If you use a framework based around a 
+design pattern (like Spring / Struts for Java, WPF / MVC for .NET, Knockout or Angular in javascript, to give an idea) we'll definitely ask if you know the associated pattern 
+and why you would use it.
+
+6.) What does the overall architecture look like? This is normally only delved into for higher level candidates, but we're looking at what pieces are separated and why, what pieces 
+eract with each other and how, optimization stuff, how you have n-tier set up (in particular we see a lot of times a business layer acting as a "catch-all" layer, so we watch 
+out for that).
+
+7.) So I don't know what your skill level is, but hopefully this helps you pick some projects. It's never a bad idea to come up with a project just for a portfolio if nothing you 
+have seems good enough in your opinion.
+
+Hope this helps!
+
+Quick Edit Just a forewarning... we have seen some projects that have made some interviewers immediately think less of a candidate. 
+Better to not submit anything than submit something that may hurt your chances. For example, one recent grad submitted a school project to us, and it was one of those from an 
+intro to HTML / Web programming classes (i'm sure you know the ones... "create a page with a RED background! Insert an image! Now make a table!"). We still took the kid through 
+the whole interviewing process, and we certainly try not to let bad project submissions speak to their technical skills overall, but it does speak to a candidate's concept of 
+"quality of work" - if you're willing to submit something like that to a potential employer where you have a job at stake, what would you be willing to submit to one of our 
+clients when it's our company's relationship at stake?
+
+---------------
+If it makes sense to do so, span multiple languages / frameworks. If you're using spring, why not toss in hibernate and serialize out to mysql via stored procedures. 
+It shows an understanding of 2 languages, 2 in-demand frameworks, and that you're not afraid to go deep with your projects. Now, since you implemented things that way, why 
+not go full out and deploy it using Jboss, which also has hooks for RestEasy, make an API off of the information that you serialized. It might not serve any purpose for the 
+thing you made, but it will serve a LOT of purpose for nearly any business that wants you.
