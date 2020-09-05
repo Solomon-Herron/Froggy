@@ -12,6 +12,8 @@
 <html>
 <head>
     <title>&#128056; Froggy</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"  href="/styles/styles.css">
 </head>
 <body>
     <div id="wrapper">

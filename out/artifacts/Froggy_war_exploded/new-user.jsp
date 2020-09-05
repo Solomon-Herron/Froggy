@@ -11,6 +11,8 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"  href="/styles/styles.css">
 </head>
 <body>
     <div class="container">
