@@ -37,18 +37,21 @@
     </div>
   </div>
 </header>
-
+<!---------------------------------------------------------------------------------------------------------------->
+<div id="no-user">
+  <p class="message">The login information that you have entered does not match any account.</p>
+</div>
 <!---------------------------------------------------------------------------------------------------------------------------------->
 
 <div class="limiter">
-  <div class="container-login">
+  <div class="container-content">
     <div class="wrap-login p-l-50 p-r-50 p-t-77 p-b-30">
       <form class="login-form validate-form" action="UserControllerServlet" method="POST">
 					<span class="login-form-title p-b-55">
 						Login
 					</span>
 
-        <div class="wrap-input validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+        <div class="wrap-input m-b-16">
           <input class="input" type="text" name="userName" placeholder="User Name">
           <span class="focus-input"></span>
           <span class="symbol-input">
@@ -69,7 +72,7 @@
             Login
           </button>
           <div class="container-login-form-btn p-t-25">
-            <input type="button" class="login-form-btn" onclick="location.href='${pageContext.request.contextPath}/new-user.jsp';" value="Create Account">
+            <input type="button" class="login-form-btn" onclick="location.href='new-user.jsp';" value="Create Account">
           </div>
         </div>
 
@@ -77,12 +80,16 @@
     </div>
   </div>
 
+  <script type="text/javascript">
+    var noUser = <%=request.getAttribute("NO_USER")%>;
+  </script>
   <!---------------------------------------------------------------------------------------------------------------------------------->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/@popperjs/core@2"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <!---------------------------------------------------------------------------------------------------------------------------------->
   <script src="js/validate.js"></script>
+  <script src="js/nouser.js"></script>
 
 </body>
 </html>

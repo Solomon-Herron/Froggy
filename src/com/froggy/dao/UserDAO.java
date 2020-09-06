@@ -24,6 +24,7 @@ public class UserDAO extends MySQLAccessor {
         Statement stmnt = null;
         ResultSet rs = null;
         User user = null;
+        String passworD = null;
 
         try {
             conn = dataSource.getConnection();
@@ -33,18 +34,17 @@ public class UserDAO extends MySQLAccessor {
             if (rs.next()) {
                 int devID = rs.getInt("dev_id");
                 String username = rs.getString("user_name");
-                String passworD = rs.getString("password");
+                passworD = rs.getString("password");
                 user = new User(devID, username, passworD);
+            } else {
+                return user;
             }
             // Check that an unencrypted password matches one that has
             // previously been hashed
-            assert user != null;
-            if (BCrypt.checkpw(password, user.getPassword())) {
+            if (BCrypt.checkpw(password, passworD)) {
                 return user;
             } else {
-                user.setDevId(null);
-                user.setUserName(null);
-                user.setPassword(null);
+                user = null;
                 return user;
             }
         } finally {

@@ -85,11 +85,21 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                 if(user.getUserName().equals("admin")){
                     destPage = "admin-home.jsp";
                 } else {
-                    destPage = "list-bugs.jsp";
+                    BugDAO bugDAO;
+                    try{
+                        bugDAO = new BugDAO(dataSource);
+                    } catch (Exception e) {
+                        throw new ServletException(e);
+                    }
+                    List<Bug> bugs = bugDAO.getBugs();
+                    request.setAttribute("BUG_LIST", bugs);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
+                    dispatcher.forward(request, response);;
                 }
             } else {
-                String message = "Invalid email/password";
-                request.setAttribute("message", message);
+                destPage = "login.jsp";
+                String noUser = "Invalid email/password";
+                request.setAttribute("NO_USER", noUser);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
             dispatcher.forward(request, response);
