@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!--imports-->
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> BOOTSTRAP CSS LIB
-  <link rel="stylesheet" type="text/css" href="web-lib/Linearicons-Free-v1.0.0/icon-font.min.css"> icons
+  <link rel="stylesheet" type="text/css" href="web-lib/Linearicons-Free-v1.0.0/icon-font.min.css">
+  <link rel="stylesheet" type="text/css" href="web-lib/font-awesome-4.7.0/css/font-awesome.min.css">
   <!-- <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"> HAMBURGER MENU LIB **need to add to logged-in pages -->
   <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/util.css">
@@ -51,7 +52,7 @@
 						Login
 					</span>
 
-        <div class="wrap-input m-b-16">
+        <div class="wrap-input validate-input m-b-16" data-validate = "Password is required">
           <input class="input" type="text" name="userName" placeholder="User Name">
           <span class="focus-input"></span>
           <span class="symbol-input">

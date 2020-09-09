@@ -63,26 +63,6 @@ textarea:focus, input:focus {
     border-color: transparent !important;
 }
 
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; }
-input:focus::-moz-placeholder { color:transparent; }
-input:focus:-ms-input-placeholder { color:transparent; }
-
-textarea:focus::-webkit-input-placeholder { color:transparent; }
-textarea:focus:-moz-placeholder { color:transparent; }
-textarea:focus::-moz-placeholder { color:transparent; }
-textarea:focus:-ms-input-placeholder { color:transparent; }
-
-input::-webkit-input-placeholder { color: #acacac; }
-input:-moz-placeholder { color: #acacac; }
-input::-moz-placeholder { color: #acacac; }
-input:-ms-input-placeholder { color: #acacac; }
-
-textarea::-webkit-input-placeholder { color: #acacac; }
-textarea:-moz-placeholder { color: #acacac; }
-textarea::-moz-placeholder { color: #acacac; }
-textarea:-ms-input-placeholder { color: #acacac; }
-
 button {
     outline: none !important;
     border: none;

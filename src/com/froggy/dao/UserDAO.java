@@ -189,6 +189,26 @@ public class UserDAO extends MySQLAccessor {
     }
 
 
+    public User checkLogin(String userName) throws Exception {
+        Connection conn = null;
+        Statement stmnt = null;
+        ResultSet rs = null;
+        User user = null;
 
-
+        try {
+            conn = dataSource.getConnection();
+            String sql = "SELECT user_name FROM credentials WHERE user_name ='" + userName +"'";
+            stmnt = conn.createStatement();
+            rs = stmnt.executeQuery(sql);
+            if (rs.next()) {
+                String username = rs.getString("user_name");
+                user = new User(username);
+            }else{
+                return user;
+            }
+            return user;
+        } finally {
+            close(conn, stmnt, rs);
+        }
+    }
 }

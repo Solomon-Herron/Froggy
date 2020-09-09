@@ -8,17 +8,16 @@
     <!--imports-->
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> BOOTSTRAP CSS LIB
     <link rel="stylesheet" type="text/css" href="web-lib/Linearicons-Free-v1.0.0/icon-font.min.css"> icons
-    <!-- <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"> HAMBURGER MENU LIB **need to add to logged-in pages -->
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/util.css">
 
     <!--main css-->
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/<<>>.css">
     <!---------------------------------------------------------------------------------------------------------------------------------->
 </head>
 
 <body>
-<!---------------------------------------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------HEADER-------------------------------------------------------------->
 
 <header>
     <div class="headerbar">
@@ -37,49 +36,31 @@
         </div>
     </div>
 </header>
-<!---------------------------------------------------------------------------------------------------------------->
-<div id="no-user">
-    <p class="message">The login information that you have entered does not match any account.</p>
+
+<!-----------------------------------------------------------ALERT MESSAGE--------------------------------------------------------------->
+<div id="container-message">
+    <p class="message">#</p>
 </div>
-<!---------------------------------------------------------------------------------------------------------------------------------->
+<!-----------------------------------------------------------CONTENT----------------------------------------------------------------------------->
 
 <div class="limiter">
-    <div class="container-content">
-        <div class="wrap-login p-l-50 p-r-50 p-t-77 p-b-30">
-            <form class="login-form validate-form" action="UserControllerServlet" method="POST">
-					<span class="login-form-title p-b-55">
-						Login
-					</span>
-
-                <div class="wrap-input m-b-16">
-                    <input class="input" type="text" name="userName" placeholder="User Name">
-                    <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-user"></span>
-							</span>
-                </div>
-
-                <div class="wrap-input validate-input m-b-16" data-validate = "Password is required">
-                    <input class="input" type="password" name="password" placeholder="Password">
-                    <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-lock"></span>
-							</span>
-                </div>
-                <input type="hidden" name="command" value="LOGIN"/>
-                <div class="container-login-form-btn p-t-25">
-                    <button type="submit" class="login-form-btn">
-                        Login
-                    </button>
-                    <div class="container-login-form-btn p-t-25">
-                        <input type="button" class="login-form-btn" onclick="location.href='new-user.jsp';" value="Create Account">
-                    </div>
-                </div>
-
-            </form>
-        </div>
+    <div class="hamburger-menu">
+        <div class="line line-1"></div>
+        <div class="line line-2"></div>
+        <div class="line line-3"></div>
     </div>
 
+    <div class="container-content">
+
+
+
+
+
+
+    </div>
+</div>
+
+<!----------------------------------------------------------------SCRIPTS-------------------------------------------------------------------->
     <script type="text/javascript">
         var noUser = <%=request.getAttribute("NO_USER")%>;
     </script>
@@ -90,6 +71,7 @@
     <!---------------------------------------------------------------------------------------------------------------------------------->
     <script src="js/validate.js"></script>
     <script src="js/nouser.js"></script>
+    <script src="js/hamburger-menu.js"></script>
 
 </body>
 </html>

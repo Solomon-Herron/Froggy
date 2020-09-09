@@ -26,9 +26,9 @@ Each of these notes need to go in commit note
 09/06/2020:
 --Created design compliant html/css boilerplates
 --login page & functionality complete....for now. Needs more testing before deployment.
--
 
-
+09/08/2020:
+-new user page finished. added boiler plate for jsp pages.
 
 
 

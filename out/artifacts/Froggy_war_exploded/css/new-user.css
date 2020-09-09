@@ -334,8 +334,6 @@ li{
     transform: translateY(-50%);
     right: 8px;
     pointer-events: none;
-
-    font-family: Raleway-SemiBold;
     color: #c80000;
     font-size: 13px;
     line-height: 1.4;
@@ -351,12 +349,12 @@ li{
 }
 
 .alert-validate::after {
-    content: "\f12a";
-    font-family: FontAwesome;
+    content: "!";
+    font-weight: bolder;
     display: block;
     position: absolute;
     color: #c80000;
-    font-size: 15px;
+    font-size: 20px;
     top: 50%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);

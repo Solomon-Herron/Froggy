@@ -33,9 +33,26 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            userLogin(request, response);
+            //read command parameter
+            String command = request.getParameter("command");
+
+            //if command is missing, then default to listing students
+            if (command == null) {
+                command = "LOGIN";
+            }
+            //route to the appropriate method
+            switch (command) { //you can use the switch conditional to redirect to different servlets that route traffic to different models.
+                case "LOGIN":
+                    userLogin(request, response);
+                    break;
+                case "ADD":
+                    addUser(request, response);
+                    break;
+                default:
+                    userLogin(request, response);
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new ServletException(e);
         }
     }
 
@@ -94,15 +111,17 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                     List<Bug> bugs = bugDAO.getBugs();
                     request.setAttribute("BUG_LIST", bugs);
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
-                    dispatcher.forward(request, response);;
+                    dispatcher.forward(request, response);
                 }
             } else {
                 destPage = "login.jsp";
                 String noUser = "Invalid email/password";
                 request.setAttribute("NO_USER", noUser);
+                RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+                dispatcher.forward(request, response);
             }
             RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-            dispatcher.forward(request, response);
+            dispatcher.forward(request, response); // ????? i dont know why this didn't throw an error. Attempt to delete
 
         } catch (SQLException | ClassNotFoundException ex) {
             throw new ServletException(ex);
@@ -139,22 +158,36 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             String email = request.getParameter("email");
             String userName = request.getParameter("userName");
             String password = BCrypt.hashpw(request.getParameter("password"), BCrypt.gensalt());
-            //create a new user obj
-            User newUser = new User(firstName, lastName, email, userName, password);
-            //add the user to the DB
-            userDAO.addUser(newUser);
-            //send back to main page
-            BugDAO bugDAO;
-            try{
-                bugDAO = new BugDAO(dataSource);
-            } catch (Exception e) {
-                throw new ServletException(e);
-            }
-            List<Bug> bugs = bugDAO.getBugs();
-            request.setAttribute("BUG_LIST", bugs);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
-            dispatcher.forward(request, response);;
+            try {
+                User user = userDAO.checkLogin(userName);
+                if (user != null) {
+                    String noUser = "username taken";
+                    request.setAttribute("NO_USER", noUser);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/new-user.jsp");
+                    dispatcher.forward(request, response);
+                } else {
+                    HttpSession session = request.getSession();
+                    //create a new user obj
+                    User newUser = new User(firstName, lastName, email, userName, password);
+                    //add the user to the DB
+                    userDAO.addUser(newUser);
+                    session.setAttribute("currentUser", newUser.getDevID());
+                    //send back to main page
+                    BugDAO bugDAO;
+                    try {
+                        bugDAO = new BugDAO(dataSource);
+                    } catch (Exception e) {
+                        throw new ServletException(e);
+                    }
+                    List<Bug> bugs = bugDAO.getBugs();
+                    request.setAttribute("BUG_LIST", bugs);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
+                    dispatcher.forward(request, response);
+                }
 
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new ServletException(ex);
+            }
         }
 
         private void updateUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
