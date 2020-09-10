@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
                     <c:forEach var="tempuser" items="${USER_LIST}">
-                        <!-- set up a link for each user -->
+                        <!-- set up a link for each user -- >
                         <c:url var="tempLink" value="BugControllerServlet">
                             <c:param name="command" value="LOAD" />
                             <c:param name="devID" value="${tempuser.devID}" />
