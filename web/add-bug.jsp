@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
 
     <!--main css-->
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/add-bug.css">
     <!---------------------------------------------------------------------------------------------------------------------------------->
 </head>
 
@@ -49,50 +49,23 @@
         <div class="wrap-login p-l-50 p-r-50 p-t-77 p-b-30">
             <form class="login-form validate-form" action="UserControllerServlet" method="POST">
 					<span class="login-form-title p-b-55">
-						Login
+						Create new bug
 					</span>
 
-                <div class="wrap-input m-b-16" data-validate = "Name is required">
-                    <input class="input" type="text" name="firstName" placeholder="First Name">
+                <div class="wrap-input m-b-16" data-validate = "Please describe the event.">
+                    <textarea class="input" type="text" name="eventDescription" placeholder="Enter a detailed description of the event where bug the occurs."></textarea>
                     <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-user"></span>
-							</span>
-                </div>
-                <div class="wrap-input m-b-16" data-validate = "Name is required">
-                    <input class="input" type="text" name="lastName" placeholder="Last Name">
-                    <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-user"></span>
-							</span>
-                </div>
-                <div class="wrap-input m-b-16" data-validate = "Email is required">
-                    <input class="input" type="text" name="email" placeholder="Email">
-                    <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-envelope"></span>
-							</span>
-                </div>
-                <div class="wrap-input m-b-16" data-validate = "A password is required">
-                    <input class="input" type="password" name="password" placeholder="Create Password">
-                    <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-lock"></span>
-							</span>
                 </div>
 
-
-                <div class="wrap-input validate-input m-b-16" data-validate = "Password is required">
-                    <input class="input" type="text" name="password" placeholder="Password">
+                <div class="wrap-input m-b-16" data-validate = "Please describe the nature of the bug">
+                    <textarea class="input" type="text" name="bugDescription" placeholder="Enter a detailed description of the bug. Outline expected functionality as compared to the behavior of the bug."></textarea>
                     <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-lock"></span>
-							</span>
                 </div>
+
                 <input type="hidden" name="command" value="ADD"/>
                 <div class="container-login-form-btn p-t-25">
                     <button type="submit" class="login-form-btn">
-                        Create Account
+                        Submit
                     </button>
                 </div>
 

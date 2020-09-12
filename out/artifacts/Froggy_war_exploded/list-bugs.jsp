@@ -81,6 +81,9 @@
                             </td>
                         </tr>
                     </c:forEach>
+                    <tr>
+                        <td><a href="https://stackoverflow.com/questions/20255458/expanding-a-div-to-reveal-overflow-on-click"></a></td>
+                    </tr>
 
                     </tbody>
                 </table>

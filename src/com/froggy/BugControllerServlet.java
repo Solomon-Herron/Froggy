@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -96,8 +98,10 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
         int devID = Integer.parseInt(request.getParameter("devID")); //(unknown datatype: string/or/int THIS WILL NOT BE A PARAMETER, READ THIS FROM SESSION OBJ
         String eventDescription = request.getParameter("eventDescription");
         String bugDescription = request.getParameter("bugDescription");
-        String reportDate = request.getParameter("reportDate"); //THIS WILL NOT BE A REQUEST PARAMETER (or will it?...) FIND OUT HOW TO OBTAIN TIMESTAMP ON CLIENT SIDE ON SUMBIT
-        //create a new bug obj
+        String reportDate;
+        LocalDateTime rawTime = LocalDateTime.now();
+        DateTimeFormatter formatCurrentTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        reportDate = rawTime.format(formatCurrentTime);
         Bug newBug = new Bug(devID, eventDescription, bugDescription, reportDate);
         //add the bug to the DB
         bugDAO.addBug(newBug);
@@ -111,7 +115,10 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
         int devID = Integer.parseInt(request.getParameter("devID")); //(unknown datatype: string/or/int THIS WILL NOT BE A PARAMETER, READ THIS FROM SESSION OBJ
         String eventDescription = request.getParameter("eventDescription");
         String bugDescription = request.getParameter("bugDescription");
-        String reportDate = request.getParameter("reportDate"); //THIS WILL NOT BE A REQUEST PARAMETER (or will it?...) FIND OUT HOW TO OBTAIN TIMESTAMP ON CLIENT SIDE ON SUMBIT
+        String reportDate;
+        LocalDateTime rawTime = LocalDateTime.now();
+        DateTimeFormatter formatCurrentTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        reportDate = rawTime.format(formatCurrentTime);
         Bug updatedBug = new Bug(referenceID, devID, eventDescription, bugDescription, reportDate);
         bugDAO.updateBug(updatedBug);
         listBugs(request, response);

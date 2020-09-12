@@ -22,6 +22,6 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>new-user.jsp</welcome-file>
+        <welcome-file>add-bug.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
