@@ -197,12 +197,13 @@ public class UserDAO extends MySQLAccessor {
 
         try {
             conn = dataSource.getConnection();
-            String sql = "SELECT user_name FROM credentials WHERE user_name ='" + userName +"'";
+            String sql = "SELECT * FROM credentials WHERE user_name ='" + userName +"'";
             stmnt = conn.createStatement();
             rs = stmnt.executeQuery(sql);
             if (rs.next()) {
                 String username = rs.getString("user_name");
-                user = new User(username);
+                int devID = rs.getInt("dev_id");
+                user = new User(devID, username);
             }else{
                 return user;
             }

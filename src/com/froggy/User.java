@@ -32,6 +32,11 @@ public class User {
         this.userName = userName;
     }
 
+    public User(int devID, String username) {
+        this.devID = devID;
+        userName = username;
+    }
+
     public int getDevID() {
         return devID;
     }

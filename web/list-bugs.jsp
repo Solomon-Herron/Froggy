@@ -57,8 +57,8 @@
                     <tbody>
                     <c:forEach var="tempbug" items="${BUG_LIST}">
                         <!-- set up a link for each bug -->
-                        <c:url var="tempLink" value="BugControllerServlet">
-                            <c:param name="command" value="LOAD" />
+                        <c:url var="updateLink" value="BugControllerServlet">
+                            <c:param name="command" value="LOAD"/>
                             <c:param name="referenceID" value="${tempbug.referenceID}" />
                         </c:url>
 
@@ -77,19 +77,24 @@
                             <td class="changeLog"><a href="youtube.com"><span class="lnr lnr-book"></span></a></td>
                             <td class="resolution"><a href="youtube.com"><span class="lnr lnr-checkmark-circle"></span></a></td>
                             <td class="edit">
-                                <a href="${tempLink}">Update</a> | <a href="${deleteLink}">Resolve</a>
+                                <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Resolve</a>
                             </td>
                         </tr>
                     </c:forEach>
                     <tr>
-                        <td><a href="https://stackoverflow.com/questions/20255458/expanding-a-div-to-reveal-overflow-on-click"></a></td>
+                        <td><a href="https://stackoverflow.com/questions/20255458/expanding-a-div-to-reveal-overflow-on-click" target="_blank">*expand over flow</a></td>
                     </tr>
                     <tr>
-                        <td><a href="https://stackoverflow.com/questions/17450861/add-scroll-bar-to-table-body"></a></td>
+                        <td><a href="https://stackoverflow.com/questions/17450861/add-scroll-bar-to-table-body" target="_blank">*add scroll bar to table</a></td>
                     </tr>
 
                     </tbody>
                 </table>
+
+                <div class="container-login-form-btn  add-bug p-t-25">
+                    <input type="button" class="login-form-btn" onclick="location.href='add-bug.jsp';" value="Report a new bug">
+                </div>
+
             </div>
         </div>
     </div>

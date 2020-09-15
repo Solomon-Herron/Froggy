@@ -90,43 +90,7 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
         }
     }
 
-    private void userLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String userName = request.getParameter("userName");
-        String password = request.getParameter("password");
-        String destPage = "login.jsp";
-        try {
-            User user = userDAO.checkLogin(userName, password);
-            if (user != null) {
-                HttpSession session = request.getSession();
-                session.setAttribute("currentUser", user.getDevID());
-                if(user.getUserName().equals("admin")){
-                    destPage = "admin-home.jsp";
-                } else {
-                    BugDAO bugDAO;
-                    try{
-                        bugDAO = new BugDAO(dataSource);
-                    } catch (Exception e) {
-                        throw new ServletException(e);
-                    }
-                    List<Bug> bugs = bugDAO.getBugs();
-                    request.setAttribute("BUG_LIST", bugs);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
-                    dispatcher.forward(request, response);
-                }
-            } else {
-                destPage = "login.jsp";
-                String noUser = "Invalid email/password";
-                request.setAttribute("NO_USER", noUser);
-                RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-                dispatcher.forward(request, response);
-            }
-            RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
-            dispatcher.forward(request, response); // ????? i dont know why this didn't throw an error. Attempt to delete
-
-        } catch (SQLException | ClassNotFoundException ex) {
-            throw new ServletException(ex);
-        }
-    }
+   //                       CRUD FUNCTIONALITY
 
     private void listUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
             //get users from sqlaccessor
@@ -206,6 +170,50 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             userDAO.deleteUser(userId);
             listUsers(request, response);
         }
+
+
+
+        //          Business Logic
+
+        private void userLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
+            String userName = request.getParameter("userName");
+            String password = request.getParameter("password");
+            String destPage = "login.jsp";
+            try {
+                User user = userDAO.checkLogin(userName, password);
+                if (user != null) {
+                    HttpSession session = request.getSession();
+                    String devID = Integer.toString(user.getDevID());
+                    session.setAttribute("currentUser", devID);
+                    if(user.getUserName().equals("admin")){
+                        destPage = "admin-home.jsp";
+                    } else {
+                        BugDAO bugDAO;
+                        try{
+                            bugDAO = new BugDAO(dataSource);
+                        } catch (Exception e) {
+                            throw new ServletException(e);
+                        }
+                        List<Bug> bugs = bugDAO.getBugs();
+                        request.setAttribute("BUG_LIST", bugs);
+                        RequestDispatcher dispatcher = request.getRequestDispatcher("/list-bugs.jsp");
+                        dispatcher.forward(request, response);
+                    }
+                } else {
+                    destPage = "login.jsp";
+                    String noUser = "Invalid email/password";
+                    request.setAttribute("NO_USER", noUser);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+                    dispatcher.forward(request, response);
+                }
+//                RequestDispatcher dispatcher = request.getRequestDispatcher(destPage);
+//                dispatcher.forward(request, response); // ????? i dont know why this didn't throw an error. Attempt to delete
+
+            } catch (SQLException | ClassNotFoundException ex) {
+                throw new ServletException(ex);
+            }
+        }
+
 
 
     }

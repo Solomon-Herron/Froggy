@@ -47,18 +47,18 @@
 <div class="limiter">
     <div class="container-content">
         <div class="wrap-login p-l-50 p-r-50 p-t-77 p-b-30">
-            <form class="login-form validate-form" action="UserControllerServlet" method="POST">
+            <form class="login-form validate-form" action="BugControllerServlet" method="GET">
 					<span class="login-form-title p-b-55">
 						Create new bug
 					</span>
 
                 <div class="wrap-input m-b-16" data-validate = "Please describe the event.">
-                    <textarea class="input" type="text" name="eventDescription" placeholder="Enter a detailed description of the event where bug occurs."></textarea>
+                    <textarea class="input" type="text" name="eventDescription" placeholder="Enter a detailed description of the event where bug the occurs."></textarea>
                     <span class="focus-input"></span>
                 </div>
 
                 <div class="wrap-input m-b-16" data-validate = "Please describe the nature of the bug">
-                    <textarea class="input" type="text" name="bugDescription" placeholder="Enter a detailed description of the bug. Outline expected functionality as compared to result"></textarea>
+                    <textarea class="input" type="text" name="bugDescription" placeholder="Enter a detailed description of the bug. Outline expected functionality as compared to the behavior of the bug."></textarea>
                     <span class="focus-input"></span>
                 </div>
 

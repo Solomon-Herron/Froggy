@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -82,7 +83,7 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
     //= URLEncoder.encode(favLang, "UTF-8");
     private void loadBug(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //get bug id from jsp
-        String referenceID= request.getParameter("referenceID");
+        String referenceID = request.getParameter("referenceID");
         //get bug info from bugDAO
         Bug tobeupdatedBug = bugDAO.getBug(referenceID);
         //place that student in a request attribute
@@ -94,15 +95,23 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
     }
 
     private void addBug(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        //read bug data
-        int devID = Integer.parseInt(request.getParameter("devID")); //(unknown datatype: string/or/int THIS WILL NOT BE A PARAMETER, READ THIS FROM SESSION OBJ
+        HttpSession session = request.getSession();
+
+        ////FOR TESTING PURPOSES ONLY//////
+        //String poop = "5014";
+        //session.setAttribute("currentUser", poop);
+        ///////////////////////////////////
+
+        String devIDstring = (String) session.getAttribute("currentUser");
+        int devID = Integer.parseInt(devIDstring);
         String eventDescription = request.getParameter("eventDescription");
         String bugDescription = request.getParameter("bugDescription");
-        String reportDate;
         LocalDateTime rawTime = LocalDateTime.now();
-        DateTimeFormatter formatCurrentTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        reportDate = rawTime.format(formatCurrentTime);
-        Bug newBug = new Bug(devID, eventDescription, bugDescription, reportDate);
+        DateTimeFormatter formatCurrentTime = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+        String reportDate = rawTime.format(formatCurrentTime);
+        Bug newBug = new Bug(eventDescription, bugDescription, reportDate, devID);
+        System.out.println("devID= " + devID);
+        System.out.println("newBug.getDevID()= " + newBug.getDevID());
         //add the bug to the DB
         bugDAO.addBug(newBug);
         //send back to main page
@@ -112,13 +121,16 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
 
     private void updateBug(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int referenceID = Integer.parseInt(request.getParameter("referenceID"));
-        int devID = Integer.parseInt(request.getParameter("devID")); //(unknown datatype: string/or/int THIS WILL NOT BE A PARAMETER, READ THIS FROM SESSION OBJ
+        HttpSession session = request.getSession();
+        String devIDstring = (String) session.getAttribute("currentUser");
+        int devID = Integer.parseInt(devIDstring);
         String eventDescription = request.getParameter("eventDescription");
         String bugDescription = request.getParameter("bugDescription");
-        String reportDate;
         LocalDateTime rawTime = LocalDateTime.now();
-        DateTimeFormatter formatCurrentTime = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        reportDate = rawTime.format(formatCurrentTime);
+        DateTimeFormatter formatCurrentTime = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+        String reportDate = rawTime.format(formatCurrentTime);
+
+
         Bug updatedBug = new Bug(referenceID, devID, eventDescription, bugDescription, reportDate);
         bugDAO.updateBug(updatedBug);
         listBugs(request, response);

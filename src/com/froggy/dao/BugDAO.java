@@ -53,6 +53,7 @@ public class BugDAO extends MySQLAccessor{
         try {
             conn = dataSource.getConnection();
             String sql = "INSERT INTO bug (dev_id, event_description, bug_description, report_date) VALUES (" + newBug.getDevID() + ", '" + newBug.getEventDescription() + "', '" + newBug.getBugDescription() + "', '" + newBug.getReportDate() + "');";
+            System.out.println("In bug DAO, before devID is sent to db" + newBug.getDevID());
             stmnt = conn.createStatement();
             stmnt.execute(sql);
         }finally{
@@ -121,8 +122,8 @@ public class BugDAO extends MySQLAccessor{
                     }
                 }
             }
-            String updateSql = "UPDATE bug SET event_description =" + updatedBug.getEventDescription() + ",  bug_description = " + updatedBug.getBugDescription() + ", report_date= " +
-                    updatedBug.getReportDate() + ", change_history=" + changeHistory + "WHERE reference_id=" + referenceID;
+            String updateSql = "UPDATE bug SET dev_id=" + updatedBug.getDevID() + ", event_description ='" + updatedBug.getEventDescription() + "',  bug_description = '" + updatedBug.getBugDescription() + "', report_date= '" +
+                    updatedBug.getReportDate() + "', change_history='" + changeHistory + "' WHERE reference_id=" + referenceID;
             stmnt.executeUpdate(updateSql);
         } finally {
             close(conn, stmnt, rs);

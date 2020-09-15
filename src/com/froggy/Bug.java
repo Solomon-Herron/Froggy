@@ -53,6 +53,12 @@ public class Bug {
         this.bugDescription = bugDescription;
         this.reportDate = reportDate;
     }
+    public Bug( String eventDescription, String bugDescription, String reportDate, int devID){
+        this.devID = devID;
+        this.eventDescription = eventDescription;
+        this.bugDescription = bugDescription;
+        this.reportDate = reportDate;
+    }
 
     public Bug(){
 

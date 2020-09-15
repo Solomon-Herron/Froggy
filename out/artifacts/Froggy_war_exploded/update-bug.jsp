@@ -1,3 +1,5 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,20 +51,21 @@
         <div class="wrap-login p-l-50 p-r-50 p-t-77 p-b-30">
             <form class="login-form validate-form" action="BugControllerServlet" method="GET">
 					<span class="login-form-title p-b-55">
-						Create new bug
+						Update Bug
 					</span>
 
-                <div class="wrap-input m-b-16" data-validate = "Please describe the event.">
-                    <textarea class="input" type="text" name="eventDescription" placeholder="Enter a detailed description of the event where bug the occurs."></textarea>
+                <div class="wrap-input m-b-16" data-validate = "Please provide an update">
+                    <textarea class="input" type="text" name="eventDescription" placeholder="${UPDATE_BUG.eventDescription}"></textarea>
                     <span class="focus-input"></span>
                 </div>
 
-                <div class="wrap-input m-b-16" data-validate = "Please describe the nature of the bug">
-                    <textarea class="input" type="text" name="bugDescription" placeholder="Enter a detailed description of the bug. Outline expected functionality as compared to the behavior of the bug."></textarea>
+                <div class="wrap-input m-b-16" data-validate = "Please provide an update">
+                    <textarea class="input" type="text" name="bugDescription" placeholder="${UPDATE_BUG.bugDescription}"></textarea>
                     <span class="focus-input"></span>
                 </div>
 
-                <input type="hidden" name="command" value="ADD"/>
+                <input type="hidden" name="command" value="UPDATE"/>
+                <input type="hidden" name="referenceID" value="${UPDATE_BUG.referenceID}"/>
                 <div class="container-login-form-btn p-t-25">
                     <button type="submit" class="login-form-btn">
                         Submit

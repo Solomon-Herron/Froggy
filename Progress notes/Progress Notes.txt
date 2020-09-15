@@ -107,3 +107,4 @@ If it makes sense to do so, span multiple languages / frameworks. If you're usin
 It shows an understanding of 2 languages, 2 in-demand frameworks, and that you're not afraid to go deep with your projects. Now, since you implemented things that way, why 
 not go full out and deploy it using Jboss, which also has hooks for RestEasy, make an API off of the information that you serialized. It might not serve any purpose for the 
 thing you made, but it will serve a LOT of purpose for nearly any business that wants you.
+
