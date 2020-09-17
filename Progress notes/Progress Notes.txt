@@ -52,7 +52,7 @@ Misc Notes:
 · Workshops on Agile/Scrum, Big data/Hadoop, AWS, micro services, ESB, Angular 2.0
 
 · OCJP certification, Capstone project
-
+/
 
                                                       ***"Squeeze" method of debugging an application***********
 
