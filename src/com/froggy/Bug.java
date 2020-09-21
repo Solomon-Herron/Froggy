@@ -39,6 +39,14 @@ public class Bug {
         this.bugDescription = bugDescription;
         this.changeHistory = changeHistory;
     }
+    public Bug(int referenceID,  String eventDescription, String bugDescription, String reportDate, int devID) {
+        this.referenceID = referenceID;
+        this.devID = devID;
+        this.eventDescription = eventDescription;
+        this.bugDescription = bugDescription;
+        this.reportDate = reportDate;
+    }
+
 
     //Create a constructor for obtaining a new bug obj from client.
     public Bug(int devID, String eventDescription, String bugDescription) {

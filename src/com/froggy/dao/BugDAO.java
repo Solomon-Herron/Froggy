@@ -111,13 +111,13 @@ public class BugDAO extends MySQLAccessor{
                 String currentBugDescription = rs.getString("bug_description");
 
                 if (!(currentEventDescription.equals(updatedBug.getEventDescription())) & !(currentBugDescription.equals(updatedBug.getBugDescription()))) {
-                    changeHistory = changeHistory + "/n/n/n/t" + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + " : Event Description- " + updatedBug.getEventDescription() + "/n/t  " + updatedBug.getBugDescription() + ".";
+                    changeHistory = changeHistory + ".|    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + " : Event Description- " + updatedBug.getEventDescription() + " | " + updatedBug.getBugDescription() + ".";
                 } else {
                     if (!(currentEventDescription.equals(updatedBug.getEventDescription()))) {
-                        changeHistory = changeHistory + "/n/n/n/t" + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Event Description- " + updatedBug.getEventDescription() + ".";
+                        changeHistory = changeHistory + ".|    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Event Description- " + updatedBug.getEventDescription() + ".";
                     } else {
                         if (!(currentBugDescription.equals(updatedBug.getBugDescription()))) {
-                            changeHistory = changeHistory + "/n/n/n/t" + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Bug Description- " + updatedBug.getBugDescription() + ".";
+                            changeHistory = changeHistory + ".|    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Bug Description- " + updatedBug.getBugDescription() + ".";
                         }
                     }
                 }

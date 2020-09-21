@@ -1,3 +1,4 @@
+<%@ page import="com.froggy.Bug" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
@@ -41,11 +42,6 @@
     <div class="container-table">
         <div class="wrap-table">
             <div class="table">
-
-                <div class="container-login-form-btn  add-bug p-t-25">
-                    <input type="button" class="login-form-btn" onclick="location.href='add-bug.jsp';" value="Report a new bug">
-                </div>
-
                 <table>
                     <thead>
                     <tr class="table-head">
@@ -61,6 +57,17 @@
                     </thead>
                     <tbody>
                     <c:forEach var="tempbug" items="${BUG_LIST}">
+
+                        <c:url var="changeLog" value="BugControllerServlet">
+                            <c:param name="command" value="CHANGELOG" />
+                            <c:param name="referenceID" value="${tempbug.referenceID}"/>
+                        </c:url>
+
+                        <c:url var="resolution" value="BugControllerServlet">
+                            <c:param name="command" value="RESOLVE" />
+                            <c:param name="referenceID" value="${tempbug.referenceID}"/>
+                        </c:url>
+
                         <!-- set up a link for each bug -->
                         <c:url var="updateLink" value="BugControllerServlet">
                             <c:param name="command" value="LOAD"/>
@@ -80,12 +87,23 @@
                             <td class="bugDesc"> ${tempbug.bugDescription} </td>
                             <td class="dateReported"> ${tempbug.reportDate} </td>
                             <td class="changeLog"><a href="youtube.com"><span class="lnr lnr-book"></span></a></td>
-                            <td class="resolution"><a href="youtube.com"><span class="lnr lnr-checkmark-circle"></span></a></td>
+                            <td class="resolution">
+
+                             <c:if test="${!(tempbug.resolution == null)}">
+                                 <c:out value="<span class='check'><a href='youtube.com'><span class='lnr lnr-checkmark-circle'></span></a></span>" escapeXml="false"/>
+                             </c:if>
+                                <c:if test="${(tempbug.resolution == null)}">
+                                    <c:out value="<span class='x'><span class='lnr lnr-cross-circle'></span></span>" escapeXml="false"/>
+                                </c:if>
+
+
+                            </td>
                             <td class="edit">
                                 <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Resolve</a>
                             </td>
                         </tr>
                     </c:forEach>
+
                     <tr>
                         <td><a href="https://stackoverflow.com/questions/20255458/expanding-a-div-to-reveal-overflow-on-click" target="_blank">*expand over flow</a></td>
                     </tr>
@@ -95,6 +113,11 @@
 
                     </tbody>
                 </table>
+
+                <div class="container-login-form-btn  add-bug">
+                    <input type="button" class="login-form-btn" onclick="location.href='add-bug.jsp';" value="Report a new bug">
+                </div>
+
             </div>
         </div>
     </div>

@@ -131,7 +131,7 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
         String reportDate = rawTime.format(formatCurrentTime);
 
 
-        Bug updatedBug = new Bug(referenceID, devID, eventDescription, bugDescription, reportDate);
+        Bug updatedBug = new Bug(referenceID, eventDescription, bugDescription, reportDate, devID);
         bugDAO.updateBug(updatedBug);
         listBugs(request, response);
 

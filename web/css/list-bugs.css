@@ -359,6 +359,14 @@ tbody tr a:hover {
     font-size: 20px;
 }
 
+.lnr-checkmark-circle {
+    color: #33ca7f;
+}
+.lnr-cross-circle{
+    font-size: 20px;
+    color: red;
+}
+
 .lnr-book:hover {
     font-weight: bolder;
 }
@@ -410,5 +418,4 @@ tbody tr a:hover {
     width: 200px;
     height:100px;
     z-index: 2;
-    margin-top: 5%;
 }

@@ -7,6 +7,7 @@
         <servlet-name>UserControllerServlet</servlet-name>
         <servlet-class>com.froggy.UserControllerServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>BugControllerServlet</servlet-name>
         <servlet-class>com.froggy.BugControllerServlet</servlet-class>
@@ -22,6 +23,6 @@
     </servlet-mapping>
     
     <welcome-file-list>
-        <welcome-file>list-bugs.jsp</welcome-file>
+        <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
