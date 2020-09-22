@@ -30,7 +30,7 @@ Each of these notes need to go in commit note
 09/08/2020:
 -new user page finished. added boiler plate for jsp pages.
 
-..
+...
 
 
 
