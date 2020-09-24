@@ -1,3 +1,5 @@
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -6,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--imports-->
+    <link rel="stylesheet" type="text/css" href="web-lib/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> BOOTSTRAP CSS LIB
     <link rel="stylesheet" type="text/css" href="web-lib/Linearicons-Free-v1.0.0/icon-font.min.css"> icons
     <!-- <link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css"> HAMBURGER MENU LIB **need to add to logged-in pages -->
@@ -13,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
 
     <!--main css-->
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/resolve-bug.css">
     <!---------------------------------------------------------------------------------------------------------------------------------->
 </head>
 
@@ -46,34 +49,24 @@
 <div class="limiter">
     <div class="container-content">
         <div class="wrap-login p-l-50 p-r-50 p-t-77 p-b-30">
-            <form class="login-form validate-form" action="UserControllerServlet" method="POST">
+
+            <form class="login-form validate-form" action="BugControllerServlet" method="GET">
 					<span class="login-form-title p-b-55">
-						Login
+						Resolve Issue
 					</span>
 
-                <div class="wrap-input m-b-16">
-                    <input class="input" type="text" name="userName" placeholder="User Name">
+                <div class="wrap-input validate-input m-b-16" data-validate = "Please describe how the issue was resolved">
+                    <textarea class="input" type="text" name="resolution" placeholder="Please describe how the issue was resolved"></textarea>
                     <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-user"></span>
-							</span>
                 </div>
 
-                <div class="wrap-input validate-input m-b-16" data-validate = "Password is required">
-                    <input class="input" type="password" name="password" placeholder="Password">
-                    <span class="focus-input"></span>
-                    <span class="symbol-input">
-								<span class="lnr lnr-lock"></span>
-							</span>
-                </div>
-                <input type="hidden" name="command" value="LOGIN"/>
+
+                <input type="hidden" name="command" value="RESOLVED"/>
+                <input type="hidden" name="referenceID" value="${REFERENCE_ID}"/>
                 <div class="container-login-form-btn p-t-25">
                     <button type="submit" class="login-form-btn">
-                        Login
+                        Submit
                     </button>
-                    <div class="container-login-form-btn p-t-25">
-                        <input type="button" class="login-form-btn" onclick="location.href='new-user.jsp';" value="Create Account">
-                    </div>
                 </div>
 
             </form>
@@ -81,7 +74,7 @@
     </div>
 
     <script type="text/javascript">
-        var noUser = <%=request.getAttribute("NO_USER")%>;
+        var noUser = <%=request.getAttribute("NO_P")%>;
     </script>
     <!---------------------------------------------------------------------------------------------------------------------------------->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

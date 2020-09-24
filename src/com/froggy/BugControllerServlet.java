@@ -57,7 +57,13 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
                     updateBug(request, response);
                     break;
                 case "RESOLVE":
+                    loadresolveBug(request, response);
+                    break;
+                case "RESOLVED":
                     resolveBug(request, response);
+                    break;
+                case "CHANGELOG":
+                    viewChangeLog(request, response);
                     break;
                 default:
                     listBugs(request, response);
@@ -68,6 +74,9 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
             e.printStackTrace();
         }
     }
+
+
+
 
     private void listBugs(HttpServletRequest request, HttpServletResponse response) throws Exception {
         //get bugs from sqlaccessor
@@ -138,8 +147,30 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
     }
     private void resolveBug(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String referenceID = request.getParameter("referenceID");
+        System.out.println("this is the reference id: " + referenceID); //debug
         String resolution = request.getParameter("resolution");
         bugDAO.resolveBug(referenceID, resolution);
         listBugs(request, response);
+    }
+
+    private void viewChangeLog(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String referenceID = request.getParameter("referenceID");
+        String changeLog = bugDAO.getChangeLog(referenceID);
+        request.setAttribute("CHANGE_LOG", changeLog);
+        //send this to the update-bug.jsp
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/bug-changelog.jsp");
+        dispatcher.forward(request,response);
+    }
+
+    private void loadresolveBug(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //get bug id from jsp
+        String referenceID = request.getParameter("referenceID");;
+        //place that student in a request attribute
+        request.setAttribute("REFERENCE_ID", referenceID);
+        //send this to the update-bug.jsp
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/resolve-bug.jsp");
+        dispatcher.forward(request,response);
+
+
     }
 }

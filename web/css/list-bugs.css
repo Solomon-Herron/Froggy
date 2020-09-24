@@ -413,9 +413,41 @@ tbody tr a:hover {
 .login-form-btn:hover {
     background: #333333;
 }
+/***
+resolution popup
+ */
+.popup-container{
+width: 100%;
+    height: 100%;
+
+}
+#resolution-popup{
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    display: none;
+}
+.resolution-text{
+
+}
+.btn{
+    width: 20px;
+    height: 20px;
+}
+.open-resolution{
+ width: 20px;
+    height: 20px;
+    background-color: #333333;
+}
+
+.close-resolution{
+
+}
+
 
 .add-bug {
     width: 200px;
     height:100px;
     z-index: 2;
+    margin-top: 10px;
 }

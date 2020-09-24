@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/util.css">
 
     <!--main css-->
-    <link rel="stylesheet" type="text/css" href="css/<<>>.css">
+    <link rel="stylesheet" type="text/css" href="css/bug-changelog.css">
     <!---------------------------------------------------------------------------------------------------------------------------------->
 </head>
 

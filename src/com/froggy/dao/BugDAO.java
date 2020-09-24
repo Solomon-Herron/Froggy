@@ -111,13 +111,13 @@ public class BugDAO extends MySQLAccessor{
                 String currentBugDescription = rs.getString("bug_description");
 
                 if (!(currentEventDescription.equals(updatedBug.getEventDescription())) & !(currentBugDescription.equals(updatedBug.getBugDescription()))) {
-                    changeHistory = changeHistory + ".|    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + " : Event Description- " + updatedBug.getEventDescription() + " | " + updatedBug.getBugDescription() + ".";
+                    changeHistory = changeHistory + "    ||||    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + " : Event Description- " + updatedBug.getEventDescription() + " | Bug Description:-" + updatedBug.getBugDescription() + ".";
                 } else {
                     if (!(currentEventDescription.equals(updatedBug.getEventDescription()))) {
-                        changeHistory = changeHistory + ".|    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Event Description- " + updatedBug.getEventDescription() + ".";
+                        changeHistory = changeHistory + "    ||||    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Event Description- " + updatedBug.getEventDescription() + ".";
                     } else {
                         if (!(currentBugDescription.equals(updatedBug.getBugDescription()))) {
-                            changeHistory = changeHistory + ".|    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Bug Description- " + updatedBug.getBugDescription() + ".";
+                            changeHistory = changeHistory + "    ||||    " + updatedBug.getReportDate() + ", Changes made by " + updatedBug.getDevID() + ": Bug Description- " + updatedBug.getBugDescription() + ".";
                         }
                     }
                 }
@@ -138,12 +138,38 @@ public class BugDAO extends MySQLAccessor{
         try {
             int referenceId = Integer.parseInt(referenceID);
             conn = dataSource.getConnection();
-            String sql = "INSERT INTO bug (resolution) VALUES " + resolution + "WHERE reference_id=" + referenceId;
+            String sql = "UPDATE bug SET resolution= '" + resolution + "' WHERE reference_id=" + referenceId;
             stmnt = conn.createStatement();
-            stmnt.executeQuery(sql);
+            stmnt.executeUpdate(sql);
         }finally{
             close(conn, stmnt, rs);
         }
+    }
+
+    public String getChangeLog(String referenceID) throws Exception {
+        Connection conn = null;
+        Statement stmnt = null;
+        ResultSet rs = null;
+        String changelog = null;
+        try {
+            int referenceId = Integer.parseInt(referenceID);
+            conn = dataSource.getConnection();
+            String sql = "SELECT change_history FROM bug WHERE reference_id=" + referenceId;
+            stmnt = conn.createStatement();
+            rs = stmnt.executeQuery(sql);
+            while (rs.next()){
+                 changelog = rs.getString("change_history");
+            }
+            System.out.println(changelog);
+            if (changelog == null){
+                changelog = "There have been no updates to this issue";
+            }
+            System.out.println(changelog);
+            return changelog;
+        }finally{
+            close(conn, stmnt, rs);
+        }
+
     }
 }
 

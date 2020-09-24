@@ -54,12 +54,12 @@
 						Update Bug
 					</span>
 
-                <div class="wrap-input m-b-16" data-validate = "Please provide an update">
+                <div class="wrap-input validate-input m-b-16" data-validate = "Please provide an update">
                     <textarea class="input" type="text" name="eventDescription">${UPDATE_BUG.eventDescription}</textarea>
                     <span class="focus-input"></span>
                 </div>
 
-                <div class="wrap-input m-b-16" data-validate = "Please provide an update">
+                <div class="wrap-input validate-input m-b-16" data-validate = "Please provide an update">
                     <textarea class="input" type="text" name="bugDescription">${UPDATE_BUG.bugDescription}</textarea>
                     <span class="focus-input"></span>
                 </div>

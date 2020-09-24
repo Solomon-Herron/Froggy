@@ -58,13 +58,8 @@
                     <tbody>
                     <c:forEach var="tempbug" items="${BUG_LIST}">
 
-                        <c:url var="changeLog" value="BugControllerServlet">
+                        <c:url var="changeLogLink" value="BugControllerServlet">
                             <c:param name="command" value="CHANGELOG" />
-                            <c:param name="referenceID" value="${tempbug.referenceID}"/>
-                        </c:url>
-
-                        <c:url var="resolution" value="BugControllerServlet">
-                            <c:param name="command" value="RESOLVE" />
                             <c:param name="referenceID" value="${tempbug.referenceID}"/>
                         </c:url>
 
@@ -75,8 +70,8 @@
                         </c:url>
 
                         <!--  set up a link to delete a bug -->
-                        <c:url var="deleteLink" value="BugControllerServlet">
-                            <c:param name="command" value="RESOLVE" />
+                        <c:url var="resolveLink" value="BugControllerServlet">
+                            <c:param name="command" value="RESOLVE"/>
                             <c:param name="referenceID" value="${tempbug.referenceID}"/>
                         </c:url>
 
@@ -86,22 +81,32 @@
                             <td class="eventDesc"> ${tempbug.eventDescription} </td>
                             <td class="bugDesc"> ${tempbug.bugDescription} </td>
                             <td class="dateReported"> ${tempbug.reportDate} </td>
-                            <td class="changeLog"><a href="youtube.com"><span class="lnr lnr-book"></span></a></td>
+                            <td class="changeLog"><a href="${changeLogLink}"><span class="lnr lnr-book"></span></a></td>
                             <td class="resolution">
 
                              <c:if test="${!(tempbug.resolution == null)}">
-                                 <c:out value="<span class='check'><a href='youtube.com'><span class='lnr lnr-checkmark-circle'></span></a></span>" escapeXml="false"/>
+                                 <c:out value="
+                                 <button type='button' class='open-resolution' id='open-button'><div class='lnr lnr-checkmark-circle'></div></button>
+
+                                  <div id='resolution-popup'>
+                                    <div class='popup-container'>
+                                        <p class='resolution-text'>${tempbug.resolution}</p>
+                                        <button type='button' class='close-resolution'  id='close-button'><span class='x'><span class='lnr lnr-cross-circle'></span></span></button>
+                                    </div>
+                                  </div>" escapeXml="false"/>
+
                              </c:if>
                                 <c:if test="${(tempbug.resolution == null)}">
                                     <c:out value="<span class='x'><span class='lnr lnr-cross-circle'></span></span>" escapeXml="false"/>
                                 </c:if>
 
-
                             </td>
                             <td class="edit">
-                                <a href="${updateLink}">Update</a> | <a href="${deleteLink}">Resolve</a>
+                                <a href="${updateLink}">Update</a> | <a href="${resolveLink}">Resolve</a>
                             </td>
                         </tr>
+
+
                     </c:forEach>
 
                     <tr>
@@ -138,6 +143,16 @@
 <script src="js/validate.js"></script>
 <script src="js/nouser.js"></script>
 <script src="js/hamburger-menu.js"></script>
+<script>
+    function openResolution() {
+        document.getElementById("resolution-popup").style.display = "block";
+    }
+    function closeResolution() {
+        document.getElementById("resolution-popup").style.display = "none";
+    }
+    document.querySelectorAll("open-button").addEventListener("click", openResolution);
+    document.querySelectorAll("close-button").addEventListener("click", closeResolution);
+</script>
 
 
 </body>
