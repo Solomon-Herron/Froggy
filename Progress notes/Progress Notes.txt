@@ -30,8 +30,13 @@ Each of these notes need to go in commit note
 09/08/2020:
 -new user page finished. added boiler plate for jsp pages.
 
-...
+09/28/2020:
 
+DECOUPLE EACH CLASS.
+Each class should be portable. You should be able to plug it into another application without having to
+alter code to limit dependencies
+-https://visualstudiomagazine.com/articles/2016/10/01/loosely-coupled-classes.aspx
+-https://freecontent.manning.com/dependency-injection-writing-maintainable-loosely-coupled-code/
 
 
 

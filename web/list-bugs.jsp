@@ -28,9 +28,9 @@
         <div class="container-navbar">
             <nav>
                 <ul class="navlinks">
-                    <li><a href="#" class="nav-link navs">Home</a></li>
-                    <li><a href="#" class="nav-link navs">Contact</a></li>
-                    <li><a href="#" class="nav-link navs">About</a></li>
+                    <li><a href="index.jsp" class="nav-link navs">Home</a></li>
+                    <li><a href="contact.jsp" class="nav-link navs">Contact</a></li>
+                    <li><a href="about.jsp" class="nav-link navs">About</a></li>
                     <li><a href="#" class="nav-link navs">Logout</a></li>
                 </ul>
             </nav>
@@ -83,17 +83,9 @@
                             <td class="dateReported"> ${tempbug.reportDate} </td>
                             <td class="changeLog"><a href="${changeLogLink}"><span class="lnr lnr-book"></span></a></td>
                             <td class="resolution">
-
+                    <!--<di-->
                              <c:if test="${!(tempbug.resolution == null)}">
-                                 <c:out value="
-                                 <button type='button' class='open-resolution' id='open-button'><div class='lnr lnr-checkmark-circle'></div></button>
-
-                                  <div id='resolution-popup'>
-                                    <div class='popup-container'>
-                                        <p class='resolution-text'>${tempbug.resolution}</p>
-                                        <button type='button' class='close-resolution'  id='close-button'><span class='x'><span class='lnr lnr-cross-circle'></span></span></button>
-                                    </div>
-                                  </div>" escapeXml="false"/>
+                                 <c:out value="<button><div class='lnr lnr-checkmark-circle'></div></button>" escapeXml="false"/>
 
                              </c:if>
                                 <c:if test="${(tempbug.resolution == null)}">
@@ -145,13 +137,13 @@
 <script src="js/hamburger-menu.js"></script>
 <script>
     function openResolution() {
-        document.getElementById("resolution-popup").style.display = "block";
+        document.getElementById("resolution-popup").style.display = "block"; //<---this is the goddamn problem. Cant select all mactching classes, because that will open every resolution. Cant open a single element by ID because that rules out every other resolution in list :((((
     }
     function closeResolution() {
         document.getElementById("resolution-popup").style.display = "none";
     }
-    document.querySelectorAll("open-button").addEventListener("click", openResolution);
-    document.querySelectorAll("close-button").addEventListener("click", closeResolution);
+    document.querySelectorAll(".open-button").addEventListener("click", openResolution);
+    document.querySelectorAll(".close-button").addEventListener("click", closeResolution);
 </script>
 
 

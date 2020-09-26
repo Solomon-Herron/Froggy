@@ -27,15 +27,16 @@
       <h1>&#128056; Froggy</h1>
     </div>
     <div class="container-navbar">
-      <nav>
-        <ul class="navlinks">
-          <li><a href="#" class="nav-link navs">Home</a></li>
-          <li><a href="#" class="nav-link navs">Contact</a></li>
-          <li><a href="#" class="nav-link navs">About</a></li>
-          <li><a href="#" class="nav-link navs">Login</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="container-navbar">
+        <nav>
+          <ul class="navlinks">
+            <li><a href="index.jsp" class="nav-link navs">Home</a></li>
+            <li><a href="contact.jsp" class="nav-link navs">Contact</a></li>
+            <li><a href="about.jsp" class="nav-link navs">About</a></li>
+            <li><a href="#" class="nav-link navs">Login</a></li>
+          </ul>
+        </nav>
+      </div>
   </div>
 </header>
 <!---------------------------------------------------------------------------------------------------------------->

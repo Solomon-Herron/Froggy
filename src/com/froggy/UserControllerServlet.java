@@ -90,7 +90,7 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
         }
     }
 
-   //                       CRUD FUNCTIONALITY
+   //   CRUD FUNCTIONALITY
 
     private void listUsers(HttpServletRequest request, HttpServletResponse response) throws Exception {
             //get users from sqlaccessor
@@ -123,7 +123,7 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             String userName = request.getParameter("userName");
             String password = BCrypt.hashpw(request.getParameter("password"), BCrypt.gensalt());
             try {
-                User user = userDAO.checkLogin(userName);
+                User user = userDAO.checkLogin(userName); //checks to make sure username is not taken
                 if (user != null) {
                     String noUser = "username taken";
                     request.setAttribute("NO_USER", noUser);
@@ -134,8 +134,9 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                     //create a new user obj
                     User newUser = new User(firstName, lastName, email, userName, password);
                     //add the user to the DB
-                    userDAO.addUser(newUser);
-                    session.setAttribute("currentUser", newUser.getDevID());
+                    int devId = userDAO.addUser(newUser);
+                    String devID = Integer.toString(devId);
+                    session.setAttribute("currentUser", devID);
                     //send back to main page
                     BugDAO bugDAO;
                     try {

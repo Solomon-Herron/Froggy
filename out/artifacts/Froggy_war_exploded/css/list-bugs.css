@@ -375,7 +375,7 @@ tbody tr a:hover {
 }
 
 .container-login-form-btn {
-    width: 100%;
+    width: 50%;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -428,7 +428,11 @@ width: 100%;
     display: none;
 }
 .resolution-text{
+ display:none;
+}
 
+.resolution-text:hover{
+    display: block;
 }
 .btn{
     width: 20px;

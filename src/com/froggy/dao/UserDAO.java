@@ -86,11 +86,11 @@ public class UserDAO extends MySQLAccessor {
         }
     }
 
-    public void addUser(User newUser) {
+    public Integer addUser(User newUser) {
         Connection conn = null;
         Statement stmnt = null;
         ResultSet rs = null;
-
+        int devId = 0;
         //1.)add user to users table
         try{
             //Create Connection
@@ -98,20 +98,22 @@ public class UserDAO extends MySQLAccessor {
             //create SQL statement
             String UserSql  = "INSERT INTO user (first_name, last_name, email) VALUES ('" + newUser.getFirstName() + "','" + newUser.getLastName() + "','" + newUser.getEmail() + "');"; //sql statement
             String CredentialsSql = "INSERT INTO credentials (user_name, password) VALUES ('" + newUser.getUserName() + "', '" + newUser.getPassword() + "');";
+            String getDevID = "SELECT dev_id FROM user WHERE first_name ='" + newUser.getFirstName() + "' AND last_name ='" + newUser.getLastName() + "';"; // this will cause people with matching first and last names to return the same devID. This needs to be fixed in future.
             stmnt = conn.createStatement(); //statement object created for connection
             //execute query
             stmnt.executeUpdate(UserSql);
             stmnt.executeUpdate(CredentialsSql);
+            rs = stmnt.executeQuery(getDevID);
+            while (rs.next()){
+                devId = rs.getInt("dev_id");
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             close(conn, stmnt, rs);
         }
-
-        //2.) add Users credentials to credential table
-
-
-
+        return devId;
     }
 
     public User getUser(String userId) {
