@@ -130,6 +130,8 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/new-user.jsp");
                     dispatcher.forward(request, response);
                 } else {
+                    String isLoggedin = "true";
+                    request.setAttribute("LOGGED_IN", isLoggedin);
                     HttpSession session = request.getSession();
                     //create a new user obj
                     User newUser = new User(firstName, lastName, email, userName, password);
@@ -183,6 +185,8 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             try {
                 User user = userDAO.checkLogin(userName, password);
                 if (user != null) {
+                    String isLoggedin = "true";
+                    request.setAttribute("LOGGED_IN", isLoggedin);
                     HttpSession session = request.getSession();
                     String devID = Integer.toString(user.getDevID());
                     session.setAttribute("currentUser", devID);

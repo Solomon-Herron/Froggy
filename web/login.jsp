@@ -38,7 +38,23 @@
         </nav>
       </div>
   </div>
+  </div>
 </header>
+
+<c:url var="listbugs" value="BugControllerServlet">
+  <c:param name="command" value="LIST" />
+</c:url>
+<c:url var="addbug" value="BugControllerServlet">
+  <c:param name="command" value="ADD" />
+</c:url>
+<div id="user-nav">
+  <nav>
+    <ul class="navlinks">
+      <li><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
+      <li><a href="${addbug}" class="nav-link navs">Add a Bug</a></li>
+    </ul>
+  </nav>
+</div>
 <!---------------------------------------------------------------------------------------------------------------->
 <div id="no-user">
   <p class="message">The login information that you have entered does not match any account.</p>
@@ -84,6 +100,7 @@
 
   <script type="text/javascript">
     var noUser = <%=request.getAttribute("NO_USER")%>;
+    var loggedIn = <%=request.getAttribute("LOGGED_IN")%>;
   </script>
   <!---------------------------------------------------------------------------------------------------------------------------------->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +34,31 @@
                     <li><a href="login.jsp" class="nav-link navs">Login</a></li>
                 </ul>
             </nav>
+
+
         </div>
     </div>
 </header>
 
+<c:url var="listbugs" value="BugControllerServlet">
+    <c:param name="command" value="LIST" />
+</c:url>
+<c:url var="addbug" value="BugControllerServlet">
+    <c:param name="command" value="ADD" />
+</c:url>
+<div id="user-nav">
+    <div class="container-navbar">
+        <nav>
+            <ul class="navlinks">
+                <li><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
+                <li><a href="${addbug}" class="nav-link navs">Add a Bug</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<!---------------------------------------------------------------------------------------------------------------->
+
+<!---------------------------------------------------------------------------------------------------------------------------------->
 <!---------------------------------------------------CONTENT----------------------------------------------------------------------------->
 
 <div class="limiter">
@@ -58,7 +80,10 @@
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!---------------------------------------------------------------------------------------------------------------------------------->
-
+<script type="text/javascript">
+    var noUser = <%=request.getAttribute("NO_USER")%>;
+    var loggedIn = <%=request.getAttribute("LOGGED_IN")%>;
+</script>
 
 </body>
 </html>

@@ -37,13 +37,22 @@ Each class should be portable. You should be able to plug it into another applic
 alter code to limit dependencies
 -https://visualstudiomagazine.com/articles/2016/10/01/loosely-coupled-classes.aspx
 -https://freecontent.manning.com/dependency-injection-writing-maintainable-loosely-coupled-code/
+-https://www.youtube.com/watch?v=HmyMFZQDWyU&ab_channel=WillKwan
+-https://refactoring.guru/refactoring/what-is-refactoring
+-https://medium.com/@andrewgoldis/how-to-document-source-code-responsibly-2b2f303aa525
+-https://www.writethedocs.org/guide/writing/beginners-guide-to-docs/
+-https://blog.submain.com/how-to-document-code/
 
+09/29/2020:
+-No more programming tutorials -> just read the documenation!
 
+09/29/20:
+-Before hitting production, be sure to clean up repository. Add this file to .gitignore as well as libraries. Delete unused code and......Refactor:https://refactoring.guru/refactoring
+-Make Froggy responsive!
 
-
-
+09
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
-
+https://www.youtube.com/watch?v=HmyMFZQDWyU&ab_channel=WillKwan
 Misc Notes:
 
  Database concepts, Core JAVA, Design Patterns, JEE Intro, Web Servers, Servlets, JSP Tools

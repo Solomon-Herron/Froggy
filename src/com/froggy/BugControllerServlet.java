@@ -105,12 +105,6 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
 
     private void addBug(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
-
-        ////FOR TESTING PURPOSES ONLY//////
-        //String poop = "5014";
-        //session.setAttribute("currentUser", poop);
-        ///////////////////////////////////
-
         String devIDstring = (String) session.getAttribute("currentUser");
         int devID = Integer.parseInt(devIDstring);
         String eventDescription = request.getParameter("eventDescription");

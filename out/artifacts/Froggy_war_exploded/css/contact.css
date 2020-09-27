@@ -1,0 +1,143 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'PT Sans', sans-serif;
+}
+
+a {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+
+
+a:focus {
+    outline: none !important;
+}
+
+a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0px;
+}
+
+p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666666;
+    margin: 0px;
+}
+
+ul, li {
+    margin: 0px;
+    list-style-type: none;
+}
+
+input {
+    outline: none;
+    border: none;
+}
+
+/*------------------------header*/
+
+.headerbar {
+    background:#fc9f5b;
+    position:fixed;
+    z-index: 2;
+    top:0;
+    left:0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container-navbar{
+    width: auto;
+    background: #7dcfb6;
+}
+
+.title{
+    padding: 10px;
+    font-size: 1em;
+}
+
+.navlinks {
+    float: right;
+    font-size: 1.5em;
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+
+}
+
+li{
+    padding: 10px;
+
+}
+
+/* ------------------------------------ */
+input {
+    display: block;
+    outline: none;
+    border: none !important;
+}
+
+textarea {
+    display: block;
+    outline: none;
+}
+
+textarea:focus, input:focus {
+    border-color: transparent !important;
+}
+
+/* ------------------------------------ */
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+iframe {
+    border: none !important;
+}
+
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-content {
+    width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #ECE4b7;
+    position: relative;
+    z-index: 1;
+    margin-top: 2%;
+    text-align: center;
+}
+
+.message{
+    margin-top: 10%;
+}
