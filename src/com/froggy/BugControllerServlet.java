@@ -65,6 +65,7 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
                 case "CHANGELOG":
                     viewChangeLog(request, response);
                     break;
+
                 default:
                     listBugs(request, response);
             }

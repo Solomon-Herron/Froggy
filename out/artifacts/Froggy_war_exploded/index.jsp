@@ -21,6 +21,17 @@
 <!--------------------------------------------------------------------HEADER-------------------------------------------------------------->
 
 <header>
+
+    <c:url var="listbugs" value="BugControllerServlet">
+        <c:param name="command" value="LIST" />
+    </c:url>
+    <c:url var="addbug" value="BugControllerServlet">
+    <c:param name="command" value="ADD" />
+    </c:url>
+    <c:url var="home" value="BugControllerServlet">
+        <c:param name="command" value="HOME" />
+    </c:url>
+
     <div class="headerbar">
         <div class="title">
             <h1>&#128056; Froggy</h1>
@@ -29,6 +40,7 @@
             <nav>
                 <ul class="navlinks">
                     <li><a href="#" class="nav-link navs">Home</a></li>
+                    <li id="buglist"><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
                     <li><a href="contact.jsp" class="nav-link navs">Contact</a></li>
                     <li><a href="about.jsp" class="nav-link navs">About</a></li>
                     <li><a href="login.jsp" class="nav-link navs">Login</a></li>
@@ -40,22 +52,7 @@
     </div>
 </header>
 
-<c:url var="listbugs" value="BugControllerServlet">
-    <c:param name="command" value="LIST" />
-</c:url>
-<c:url var="addbug" value="BugControllerServlet">
-    <c:param name="command" value="ADD" />
-</c:url>
-<div id="user-nav">
-    <div class="container-navbar">
-        <nav>
-            <ul class="navlinks">
-                <li><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
-                <li><a href="${addbug}" class="nav-link navs">Add a Bug</a></li>
-            </ul>
-        </nav>
-    </div>
-</div>
+
 <!---------------------------------------------------------------------------------------------------------------->
 
 <!---------------------------------------------------------------------------------------------------------------------------------->
@@ -63,6 +60,7 @@
 
 <div class="limiter">
     <div class="container-content">
+
         <div class="intro">
             <h1><strong>Welcome!</strong></h1>
             <div class="titlebar"></div>
@@ -80,10 +78,13 @@
 <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!---------------------------------------------------------------------------------------------------------------------------------->
-<script type="text/javascript">
-    var noUser = <%=request.getAttribute("NO_USER")%>;
-    var loggedIn = <%=request.getAttribute("LOGGED_IN")%>;
-</script>
 
+<script type="text/javascript">
+   var noUser = null;
+   <%--var loggedIn = '<%=request.getAttribute("LOGGED_IN")%>';--%>
+   var loggedIn = '<%=session.getAttribute("loggedIn")%>';
+   console.log(loggedIn);
+</script>
+<script src="js/nouser.js"></script>
 </body>
 </html>

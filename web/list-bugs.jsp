@@ -19,6 +19,9 @@
 </head>
 
 <body>
+<c:url var="home" value="UserControllerServlet">
+    <c:param name="command" value="HOME" />
+</c:url>
 
 <header>
     <div class="headerbar">
@@ -28,7 +31,7 @@
         <div class="container-navbar">
             <nav>
                 <ul class="navlinks">
-                    <li><a href="index.jsp" class="nav-link navs">Home</a></li>
+                    <li><a href="${home}" class="nav-link navs">Home</a></li>
                     <li><a href="contact.jsp" class="nav-link navs">Contact</a></li>
                     <li><a href="about.jsp" class="nav-link navs">About</a></li>
                     <li><a href="#" class="nav-link navs">Logout</a></li>

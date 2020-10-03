@@ -29,7 +29,56 @@
 09/08/2020:
 -new user page finished. added boiler plate for jsp pages.
 
-....
+10/03/2020:
+-Use psuedo session tracking with request forwarding in order to display navlinks while logged in..
+
+1.) this must go in EVERY FRONT FACING JSP ( index, contact, about) that a user will use while logged in. This will allow an active user to access about pages without losing access to bug-list.jsp
+
+ index.jsp:25-43  <c:url var="listbugs" value="BugControllerServlet">
+                      <c:param name="command" value="LIST" />
+                  </c:url>
+                  ...
+                  <li id="buglist"><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
+                  ...
+
+  index.jsp:84   <script>
+                    var loggedIn = '<%=request.getAttribute("LOGGED_IN")%>';
+                 </script>
+
+2.) this must go in every business logic page. (list-bugs, add-bug, resolve-bug, etc). This allows you to send a request attribute to the about papage via the User controllerServlet.
+
+ list-bugs:22-42    <c:url var="home" value="UserControllerServlet">
+                        <c:param name="command" value="HOME" />
+                    </c:url>
+                    ...
+                    <li><a href="${home}" class="nav-link navs">Home</a></li>
+                    <li><a href="${contact}" class="nav-link navs">Home</a></li>
+                    <li><a href="${about}" class="nav-link navs">Home</a></li>
+                    <li><a href="${logout}" class="nav-link navs">Home</a></li>
+                    ...
+3.) UserControllerServlet needs to route to each 'about' page after appending a boolean request attribute to allow js file to display links
+
+                      case "HOME":
+                         home(request, response);
+                      break;
+                      ...
+                      private void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                            String loggedIn = "yes";
+                            request.setAttribute("LOGGED_IN", loggedIn);
+                            RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+                            dispatcher.forward(request, response);
+                       }
+                      ...
+
+4.) move all nouser.js contents and functionality into validate.js.
+5.) IMPORTANT!!!
+
+                <script type="text/javascript">
+                   var loggedIn = '<%=request.getAttribute("LOGGED_IN")%>';
+                </script>
+                <script src="js/nouser.js"></script>
+
+script import needs to come AFTER global variable declarations.
 
 
 

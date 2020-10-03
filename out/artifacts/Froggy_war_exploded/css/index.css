@@ -199,13 +199,4 @@ li{
     margin: 10px 0px 10px 0px;
 }
 
-#user-nav{
-    background:#fc9f5b;
-    position:fixed;
-    z-index: 2;
-    top:0;
-    left:0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
+#buglist{ display: none;}

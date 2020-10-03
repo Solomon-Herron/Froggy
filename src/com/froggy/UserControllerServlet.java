@@ -82,6 +82,9 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                 case "DELETE":
                     deleteUser(request, response);
                     break;
+                case "HOME":
+                    home(request, response);
+                    break;
                 default:
                     userLogin(request, response);
             }
@@ -139,6 +142,7 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                     int devId = userDAO.addUser(newUser);
                     String devID = Integer.toString(devId);
                     session.setAttribute("currentUser", devID);
+                    session.setAttribute("loggedIn", isLoggedin);
                     //send back to main page
                     BugDAO bugDAO;
                     try {
@@ -174,10 +178,6 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             listUsers(request, response);
         }
 
-
-
-        //          Business Logic
-
         private void userLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
             String userName = request.getParameter("userName");
             String password = request.getParameter("password");
@@ -186,10 +186,10 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                 User user = userDAO.checkLogin(userName, password);
                 if (user != null) {
                     String isLoggedin = "true";
-                    request.setAttribute("LOGGED_IN", isLoggedin);
                     HttpSession session = request.getSession();
                     String devID = Integer.toString(user.getDevID());
                     session.setAttribute("currentUser", devID);
+                    session.setAttribute("loggedIn", isLoggedin);
                     if(user.getUserName().equals("admin")){
                         destPage = "admin-home.jsp";
                     } else {
@@ -219,7 +219,12 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             }
         }
 
-
+    private void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String loggedIn = "yes";
+        request.setAttribute("LOGGED_IN", loggedIn);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
+    }
 
     }
 
