@@ -1,4 +1,3 @@
-Each of these notes need to go in commit note
 
 08/29/2020:
 -created boilerplate, all classes and jsps.
@@ -35,12 +34,10 @@ Each of these notes need to go in commit note
 
 
 
-
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Misc Notes:
-
+/*[
  Database concepts, Core JAVA, Design Patterns, JEE Intro, Web Servers, Servlets, JSP Tools
 
 · Spring, Hibernate, App Servers, EJB, JMS, Web Services, REST, Front end development Angular JS, UI – HTML,
