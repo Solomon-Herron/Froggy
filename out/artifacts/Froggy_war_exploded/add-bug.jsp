@@ -28,37 +28,28 @@
         </div>
         <div class="container-navbar">
             <nav>
+                <c:url var="buglist" value="BugControllerServlet">
+                    <c:param name="command" value="LIST" />
+                </c:url>
+                <c:url var="contact" value="UserControllerServlet">
+                    <c:param name="command" value="CONTACT" />
+                </c:url>
+                <c:url var="about" value="UserControllerServlet">
+                    <c:param name="command" value="ABOUT" />
+                </c:url>
+                <c:url var="logout" value="UserControllerServlet">
+                    <c:param name="command" value="LOGOUT" />
+                </c:url>
                 <ul class="navlinks">
-                    <li><a href="index.jsp" class="nav-link navs">Home</a></li>
-                    <li><a href="contact.jsp" class="nav-link navs">Contact</a></li>
-                    <li><a href="about.jsp" class="nav-link navs">About</a></li>
-                    <li><a href="#" class="nav-link navs">Logout</a></li>
+                    <li><a href="${buglist}" class="nav-link navs">Bug List</a></li>
+                    <li><a href="${contact}" class="nav-link navs">Contact</a></li>
+                    <li><a href="${about}" class="nav-link navs">About</a></li>
+                    <li><a href="${logout}" class="nav-link navs">Logout</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 </header>
-
-<c:url var="listbugs" value="BugControllerServlet">
-    <c:param name="command" value="LIST" />
-</c:url>
-<c:url var="addbug" value="BugControllerServlet">
-    <c:param name="command" value="ADD" />
-</c:url>
-<div id="user-nav">
-    <nav>
-        <ul class="navlinks">
-            <li><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
-            <li><a href="${addbug}" class="nav-link navs">Add a Bug</a></li>
-        </ul>
-    </nav>
-</div>
-
-<!---------------------------------------------------------------------------------------------------------------->
-<div id="no-user">
-    <p class="message">The login information that you have entered does not match any account.</p>
-</div>
-<!---------------------------------------------------------------------------------------------------------------------------------->
 
 <div class="limiter">
     <div class="container-content">
@@ -89,9 +80,6 @@
         </div>
     </div>
 
-    <script type="text/javascript">
-        var loggedIn = <%=request.getAttribute("LOGGED_IN")%>;
-    </script>
     <!---------------------------------------------------------------------------------------------------------------------------------->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>

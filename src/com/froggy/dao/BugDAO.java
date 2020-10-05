@@ -171,5 +171,35 @@ public class BugDAO extends MySQLAccessor{
         }
 
     }
+
+    public Bug getResolution(String referenceID) throws Exception{
+        Connection conn = null;
+        Statement stmnt = null;
+        ResultSet rs = null;
+        Bug bug = null;
+        String resolution = null;
+        String eventDesc = null;
+        String bugDesc = null;
+        try {
+            int referenceId = Integer.parseInt(referenceID);
+            conn = dataSource.getConnection();
+            String sql = "SELECT resolution, event_description, bug_description FROM bug WHERE reference_id=" + referenceId;
+            stmnt = conn.createStatement();
+            rs = stmnt.executeQuery(sql);
+            while (rs.next()){
+                resolution = rs.getString("resolution");
+                eventDesc = rs.getString("event_description");
+                bugDesc = rs.getString("bug_description");
+            }
+            if (resolution == null){
+                resolution = "There have been no updates to this issue";
+            }
+            bug = new Bug(resolution, eventDesc, bugDesc);
+            return bug;
+        }finally{
+            close(conn, stmnt, rs);
+        }
+
+    }
 }
 

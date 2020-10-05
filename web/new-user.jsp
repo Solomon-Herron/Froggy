@@ -29,30 +29,12 @@
             <nav>
                 <ul class="navlinks">
                     <li><a href="index.jsp" class="nav-link navs">Home</a></li>
-                    <li><a href="contact.jsp" class="nav-link navs">Contact</a></li>
-                    <li><a href="about.jsp" class="nav-link navs">About</a></li>
                     <li><a href="login.jsp" class="nav-link navs">Login</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 </header>
-
-<c:url var="listbugs" value="BugControllerServlet">
-    <c:param name="command" value="LIST" />
-</c:url>
-<c:url var="addbug" value="BugControllerServlet">
-    <c:param name="command" value="ADD" />
-</c:url>
-<div id="user-nav">
-    <nav>
-        <ul class="navlinks">
-            <li><a href="${listbugs}" class="nav-link navs">Bug List</a></li>
-            <li><a href="${addbug}" class="nav-link navs">Add a Bug</a></li>
-        </ul>
-    </nav>
-</div>
-
 <!---------------------------------------------------------------------------------------------------------------->
 <div id="no-user">
     <p class="message">The user name you have selected has already been taken</p>
@@ -113,7 +95,12 @@
     </div>
 
     <script type="text/javascript">
-        var loggedIn = <%=request.getAttribute("LOGGED_IN")%>;
+        var noUser = <%=request.getAttribute("NO_USER")%>;
+        if( noUser != null ){
+            document.getElementById("no-user").style.display = "block";
+        } else {
+            document.getElementById("no-user").style.display = "none";
+        }
     </script>
     <!---------------------------------------------------------------------------------------------------------------------------------->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -121,7 +108,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!---------------------------------------------------------------------------------------------------------------------------------->
     <script src="js/validate.js"></script>
-    <script src="js/nouser.js"></script>
 
 </body>
 </html>

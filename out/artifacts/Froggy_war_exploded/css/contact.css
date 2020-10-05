@@ -82,6 +82,7 @@ input {
     flex-direction: row;
 
 }
+#buglist{ display: none;}
 
 li{
     padding: 10px;

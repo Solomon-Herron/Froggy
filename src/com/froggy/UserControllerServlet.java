@@ -82,8 +82,14 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                 case "DELETE":
                     deleteUser(request, response);
                     break;
-                case "HOME":
-                    home(request, response);
+                case "CONTACT":
+                    contact(request, response);
+                    break;
+                case "ABOUT":
+                    about(request, response);
+                    break;
+                case "LOGOUT":
+                    logout(request, response);
                     break;
                 default:
                     userLogin(request, response);
@@ -142,7 +148,6 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
                     int devId = userDAO.addUser(newUser);
                     String devID = Integer.toString(devId);
                     session.setAttribute("currentUser", devID);
-                    session.setAttribute("loggedIn", isLoggedin);
                     //send back to main page
                     BugDAO bugDAO;
                     try {
@@ -219,9 +224,22 @@ public class UserControllerServlet extends javax.servlet.http.HttpServlet {
             }
         }
 
-    private void home(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String loggedIn = "yes";
+    private void contact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String loggedIn = "user logged in";
         request.setAttribute("LOGGED_IN", loggedIn);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/contact.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void about(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String loggedIn = "user logged in";
+        request.setAttribute("LOGGED_IN", loggedIn);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/about.jsp");
+        dispatcher.forward(request, response);
+    }
+    private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        session = request.getSession(false);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
     }

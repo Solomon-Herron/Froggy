@@ -45,17 +45,32 @@
                     var loggedIn = '<%=request.getAttribute("LOGGED_IN")%>';
                  </script>
 
+
+                #buglist{ display: none;}
+
 2.) this must go in every business logic page. (list-bugs, add-bug, resolve-bug, etc). This allows you to send a request attribute to the about papage via the User controllerServlet.
 
- list-bugs:22-42    <c:url var="home" value="UserControllerServlet">
-                        <c:param name="command" value="HOME" />
+ list-bugs:22-42
+                    <c:url var="buglist" value="UserControllerServlet">
+                          <c:param name="command" value="LIST" />
                     </c:url>
-                    ...
-                    <li><a href="${home}" class="nav-link navs">Home</a></li>
+                    <c:url var="contact" value="UserControllerServlet">
+                         <c:param name="command" value="CONTACT" />
+                    </c:url>
+                    <c:url var="about" value="UserControllerServlet">
+                         <c:param name="command" value="ABOUT" />
+                    </c:url>
+                    <c:url var="logout" value="UserControllerServlet">
+                         <c:param name="command" value="LOGOUT" />
+                    </c:url>
+
+
+                    <li><a href="${buglist}" class="nav-link navs">Bug List</a></li>
                     <li><a href="${contact}" class="nav-link navs">Home</a></li>
                     <li><a href="${about}" class="nav-link navs">Home</a></li>
-                    <li><a href="${logout}" class="nav-link navs">Home</a></li>
-                    ...
+                    <li><a href="${logout}" class="nav-link navs">Logout</a></li>
+
+
 3.) UserControllerServlet needs to route to each 'about' page after appending a boolean request attribute to allow js file to display links
 
                       case "HOME":

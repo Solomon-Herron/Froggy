@@ -132,23 +132,6 @@ li{
 
 }
 
-/* ------------------------------------ */
-input {
-    display: block;
-    outline: none;
-    border: none !important;
-}
-
-textarea {
-    display: block;
-    outline: none;
-}
-
-textarea:focus, input:focus {
-    border-color: transparent !important;
-}
-
-/* ------------------------------------ */
 button {
     outline: none !important;
     border: none;
@@ -186,31 +169,4 @@ iframe {
     z-index: 1;
 }
 
-.wrap-table {
-    width: auto;
-}
-
-@media screen and (max-width: 992px) {
-    .column4,
-    .column5,
-    .column6 {
-        text-align: left;
-    }
-
-    .column4,
-    .column5,
-    .column6,
-    .column1,
-    .column2,
-    .column3 {
-        width: 100%;
-    }
-
-    tbody tr {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 576px) {
-
-}
+#buglist{ display: none;}

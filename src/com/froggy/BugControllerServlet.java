@@ -62,6 +62,9 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
                 case "RESOLVED":
                     resolveBug(request, response);
                     break;
+                case "RESOLUTION":
+                    getresolution(request, response);
+                    break;
                 case "CHANGELOG":
                     viewChangeLog(request, response);
                     break;
@@ -75,8 +78,6 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
             e.printStackTrace();
         }
     }
-
-
 
 
     private void listBugs(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -165,7 +166,16 @@ public class BugControllerServlet extends javax.servlet.http.HttpServlet {
         //send this to the update-bug.jsp
         RequestDispatcher dispatcher = request.getRequestDispatcher("/resolve-bug.jsp");
         dispatcher.forward(request,response);
-
-
     }
+
+
+    private void getresolution(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String referenceID = request.getParameter("referenceID");
+        Bug bug = bugDAO.getResolution(referenceID);
+        request.setAttribute("RESOLUTION", bug);
+        //send this to the update-bug.jsp
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/resolution.jsp");
+        dispatcher.forward(request,response);
+    }
+
 }

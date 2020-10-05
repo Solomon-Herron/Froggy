@@ -67,6 +67,11 @@ public class Bug {
         this.bugDescription = bugDescription;
         this.reportDate = reportDate;
     }
+    public Bug(String resolution, String eventDescription, String bugDescription){
+        this.resolution = resolution;
+        this.eventDescription = eventDescription;
+        this.bugDescription = bugDescription;
+    }
 
     public Bug(){
 
