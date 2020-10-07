@@ -96,8 +96,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!---------------------------------------------------------------------------------------------------------------------------------->
     <script src="../js/validate.js"></script>
-    <script src="../js/nouser.js"></script>
-    <script src="../js/hamburger-menu.js"></script>
 
 </body>
 </html>

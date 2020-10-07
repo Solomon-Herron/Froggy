@@ -26,3 +26,8 @@ hs_err_pid*
 
 #My libs
 web/web-lib/
+
+Froggy.iml
+/Progress notes
+/.idea
+/MySQLscripts
