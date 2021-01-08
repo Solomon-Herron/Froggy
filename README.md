@@ -20,7 +20,7 @@ more foundational knowledge about back-end web development with Java. Before I m
 
 ## Roadmap
 
-It would be impossible for me to quatify just how much I have learned while creating this project. Many programming concepts and design patterns which used to be obscure, now make a ton of sense. Froggy is one of my first projects so If you are reviewing my code.. Please *don't*.
+It would be impossible for me to quantify just how much I have learned while creating this project. Many programming concepts and design patterns which used to be obscure, now make a ton of sense. Froggy is one of my first projects so If you are reviewing my code.. Please *don't*.
 
 Among the many lessons I've learned, is how *not* to code. Although this project is 'finished' I
  am unhappy with it's current state. As it stands, there is no exception handling, every method
