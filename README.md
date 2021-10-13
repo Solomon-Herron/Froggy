@@ -26,7 +26,7 @@ Among the many lessons I've learned, is how *not* to code. Although this project
  am unhappy with it's current state. As it stands, there is no exception handling, every method
   throws an exception to it's calling method rather handling the exception in a graceful manner.
    This is the type of quick and dirty solution that I will be leaving after this project. 
-   All of my classes are tightly, I have since learned how powerful, modular, and *clean* using
+   All of my classes are tightly coupled. I have since learned how powerful, and modular, using
     Interfaces can be. I didn't take any time to design my classes and objects, I really just 
     wanted to start banging out code. I have some plain old java objects, controller classes 
     that are doing ~~much~~ all of the heavy lifting, and my data accessor classes are riddled
