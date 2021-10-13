@@ -36,10 +36,7 @@ Among the many lessons I've learned, is how *not* to code. Although this project
        just an unmaintainable mess. Also, the changelog page is a disaster. Please avoid it. If you are poring over this repo just know that I have learned
         from all of these ugly bits and have become a stronger coder.
         
-As for the future of this project, I have not decided whether my portfolio will take on a quality/quantity approach.
-With a few thousand lines of code, I have already accrued a bit of tech debt, and while refactoring will surely beneficial for the development of my skill,
-there are still so many dev tools and design concepts that I want to learn. So as of now this project is being shelved as it is. 
-A short wish list of things that I'd like to add to this project, and incorporate into future projects as follows:
+
 
 -JUnit. I'd like to learn how to use automated testing.
 
